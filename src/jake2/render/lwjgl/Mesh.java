@@ -1,28 +1,3 @@
-/*
- * Mesh.java
- * Copyright (C) 2003
- *
- * $Id: Mesh.java,v 1.8 2005/06/08 21:27:10 cawe Exp $
- */
-/*
-Copyright (C) 1997-2001 Id Software, Inc.
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-
-*/
 package jake2.render.lwjgl;
 
 import jake2.Defines;
@@ -580,7 +555,7 @@ public abstract class Mesh extends Light {
 		// draw all the triangles
 		//
 		if ( (currententity.flags & Defines.RF_DEPTHHACK) != 0) // hack the depth range to prevent view model from poking into walls
-			gl.glDepthRange(gldepthmin, gldepthmin + 0.3*(gldepthmax-gldepthmin));
+			gl.glDepthRange(gldepthmin, gldepthmin + 0.3 *(gldepthmax - gldepthmin));
 
 		if ( (currententity.flags & Defines.RF_WEAPONMODEL) != 0 && (r_lefthand.value == 1.0f) )
 		{

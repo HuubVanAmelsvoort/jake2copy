@@ -1,29 +1,3 @@
-/*
- * Created on Jun 19, 2004
- * 
- * Copyright (C) 2003
- *
- * $Id: Channel.java,v 1.8 2005/12/04 20:56:26 cawe Exp $
- */
-/*
-Copyright (C) 1997-2001 Id Software, Inc.
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-
-*/
 package jake2.sound.lwjgl;
 
 import jake2.Defines;
@@ -124,7 +98,7 @@ public class Channel {
 			AL10.alSourcef (sourceId, AL10.AL_GAIN, 1.0f);
 			AL10.alSourcef (sourceId, AL10.AL_PITCH, 1.0f);
 			AL10.alSourcei (sourceId, AL10.AL_SOURCE_ABSOLUTE,  AL10.AL_TRUE);
-			AL10.nalSourcefv(sourceId, AL10.AL_VELOCITY, NULLVECTOR, 0);
+			//AL10.nalSourcefv(sourceId, AL10.AL_VELOCITY, NULLVECTOR, 0); // Huub regel uit
 			AL10.alSourcei (sourceId, AL10.AL_LOOPING, AL10.AL_FALSE);
 			AL10.alSourcef (sourceId, AL10.AL_REFERENCE_DISTANCE, 200.0f);
 			AL10.alSourcef (sourceId, AL10.AL_MIN_GAIN, 0.0005f);
@@ -330,13 +304,13 @@ public class Channel {
 						AL10.alSourcef (sourceId, AL10.AL_GAIN, ch.volume);
 					}
 					AL10.alSourcef (sourceId, AL10.AL_ROLLOFF_FACTOR, ch.rolloff);
-					AL10.nalSourcefv(sourceId, AL10.AL_POSITION, sourceOrigin, 0);
+					// AL10.nalSourcefv(sourceId, AL10.AL_POSITION, sourceOrigin, 0); //Huub regel uit
 					AL10.alSourcePlay(sourceId);
 					ch.modified = false;
 				} else {
 					state = AL10.alGetSourcei(sourceId, AL10.AL_SOURCE_STATE);
 					if (state == AL10.AL_PLAYING) {
-						AL10.nalSourcefv(sourceId, AL10.AL_POSITION, sourceOrigin, 0);
+						//AL10.nalSourcefv(sourceId, AL10.AL_POSITION, sourceOrigin, 0);//Huub regel uit
 					} else {
 						ch.clear();
 					}

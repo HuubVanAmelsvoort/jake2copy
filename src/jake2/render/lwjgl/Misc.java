@@ -1,28 +1,3 @@
-/*
- * Misc.java
- * Copyright (C) 2003
- *
- * $Id: Misc.java,v 1.8 2005/05/11 21:45:02 cawe Exp $
- */
-/*
-Copyright (C) 1997-2001 Id Software, Inc.
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-
-*/
 package jake2.render.lwjgl;
 
 import jake2.Defines;
@@ -38,6 +13,9 @@ import java.nio.channels.FileChannel;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.*;
+import static org.lwjgl.opengl.GL11.GL_PACK_ALIGNMENT;
+import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
+//import org.lwjgl.opengl.G11.*;
 
 /**
  * Misc
@@ -162,7 +140,8 @@ public abstract class Misc extends Mesh {
 	        
 	        // change pixel alignment for reading
 	        if (vid.width % 4 != 0) {
-	            gl.glPixelStorei(GL.GL_PACK_ALIGNMENT, 1); 
+	            //gl.glPixelStorei(GL.GL_PACK_ALIGNMENT, 1); // Huub arg niet gevonden
+	            gl.glPixelStorei(GL_PACK_ALIGNMENT, 1); 
 	        }
 	        
 	        // OpenGL 1.2+ supports the GL_BGR color format
@@ -170,10 +149,11 @@ public abstract class Misc extends Mesh {
 	        // e.g.: 1.5.2 NVIDIA 66.29
 	        if (gl_config.getOpenGLVersion() >= 1.2f) {
 	            // read the BGR values into the image buffer
-	            gl.glReadPixels(0, 0, vid.width, vid.height, GL12.GL_BGR, GL.GL_UNSIGNED_BYTE, image);
+//	            gl.glReadPixels(0, 0, vid.width, vid.height, GL12.GL_BGR, GL.GL_UNSIGNED_BYTE, image); // Huub deze arg GL. niet gevonden
+	            gl.glReadPixels(0, 0, vid.width, vid.height, GL12.GL_BGR, GL_UNSIGNED_BYTE, image);
 	        } else {
 	            // read the RGB values into the image buffer
-	            gl.glReadPixels(0, 0, vid.width, vid.height, GL11.GL_RGB, GL.GL_UNSIGNED_BYTE, image);
+	            gl.glReadPixels(0, 0, vid.width, vid.height, GL11.GL_RGB, GL_UNSIGNED_BYTE, image);
 		        // flip RGB to BGR
 		        byte tmp;
 		        for (i = TGA_HEADER_SIZE; i < fileLength; i += 3) {
@@ -183,7 +163,7 @@ public abstract class Misc extends Mesh {
 		        }
 	        }
 	        // reset to default alignment
-	        gl.glPixelStorei(GL.GL_PACK_ALIGNMENT, 4); 
+	        gl.glPixelStorei(GL_PACK_ALIGNMENT, 4); // Huub GL. weg
 	        // close the file channel
 	        ch.close();
 	    } catch (IOException e) {

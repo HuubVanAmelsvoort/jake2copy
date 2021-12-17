@@ -41,13 +41,13 @@
 	</target>
 
 	<!-- compile -->
-	<target name="compile" depends="init">
+	<!-- target name="compile" depends="init">
 		<javac destdir="${build}" optimize="off" debug="on" source="1.4">
 			<src path="${src}"/>
 			<include name="jake2/**"/>
 			<classpath refid="build.class.path"/>
 		</javac>
-	</target>
+	</target -->
 	
 	<!-- copy resources -->
 	<target name="copyres" depends="init">
